@@ -14,6 +14,9 @@ const useCloudinaryStore = defineStore('cloudinary', () => {
             public_id: response?.data?.public_id,
         }
     }
-    return {uploadAndGetSecureUrl}
+    const deleteImage = async (publicId) => {
+        await axios.delete(`/cloudinary/${publicId}`);
+    }
+    return {uploadAndGetSecureUrl, deleteImage};
 });
 export default useCloudinaryStore;

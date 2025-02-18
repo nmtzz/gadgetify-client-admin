@@ -177,7 +177,8 @@ const onFinish = async (values) => {
     await danhMucStore.saveDanhMuc({
       id: formState.id,
       tenDanhMuc: formState.tenDanhMuc,
-      icon: formState.icon
+      icon: formState.icon,
+      publicId: props?.category?.publicId
     })
   } else {
     await danhMucStore.updateDanhMuc({

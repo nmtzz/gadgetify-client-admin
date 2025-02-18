@@ -15,6 +15,9 @@ const useDanhMucStore = defineStore('danh-muc', () => {
         danhMuc.value = (await axios.get(`/danh-muc/${id}`)).data;
     }
     const saveDanhMuc = async (data) => {
+        if (data.publicId) {
+            await cloudinaryStore.deleteImage(data.publicId);
+        }
         data.icon = (await cloudinaryStore.uploadAndGetSecureUrl(data.icon)).secure_url;
         data.publicId = (await cloudinaryStore.uploadAndGetSecureUrl(data.icon)).public_id;
         await axios.post('/danh-muc', data);
